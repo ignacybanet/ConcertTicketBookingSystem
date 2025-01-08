@@ -1,0 +1,15 @@
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\bin\Debug\net8.0\ConcertTicketBookingSystem.exe
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\bin\Debug\net8.0\ConcertTicketBookingSystem.deps.json
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\bin\Debug\net8.0\ConcertTicketBookingSystem.runtimeconfig.json
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\bin\Debug\net8.0\ConcertTicketBookingSystem.dll
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\bin\Debug\net8.0\ConcertTicketBookingSystem.pdb
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.AssemblyInfoInputs.cache
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.AssemblyInfo.cs
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.csproj.CoreCompileInputs.cache
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.sourcelink.json
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.dll
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\refint\ConcertTicketBookingSystem.dll
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.pdb
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ConcertTicketBookingSystem.genruntimeconfig.cache
+C:\Users\gramw\OneDrive\Pulpit\wszystko\szkola\c#\bookingsystem\ConcertTicketBookingSystem\obj\Debug\net8.0\ref\ConcertTicketBookingSystem.dll

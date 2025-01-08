@@ -1,1 +1,3 @@
 # ConcertTicketBookingSystem
+
+Bylo dużo problemow przy robieniu plików...

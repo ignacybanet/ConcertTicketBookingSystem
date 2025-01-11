@@ -8,5 +8,7 @@ class Program {
     static void Main() {
         BookingSystem sstenm = new();
         sstenm.AddConcert();
+        sstenm.EditConcert();
+        sstenm.RemoveConcert();
     }
 }

@@ -8,7 +8,7 @@ namespace bookingSystemClass;
 
 class BookingSystem {
     
-    List<Concert> concertList = new List<Concert>();
+    public List<Concert> concertList = new List<Concert>();
 
     public void AddConcert() {
         string? cn; // concert name
@@ -103,6 +103,104 @@ class BookingSystem {
             concertList.Add( new Concert(cn, cd, cl, realsa, realcp, realct) );
         } else {
             AddConcert();
+        }
+    }
+
+
+    public void EditConcert() {
+        
+        for(int i = 0; i != concertList.Count; i++) {
+            Console.WriteLine($"{i + 1}. {concertList[i].Name}");
+        }
+
+        string? choice1;
+        int realchoice = 0;
+
+        do {
+            Console.WriteLine("Which concert would you like to edit? (pick a number)");
+            
+            try {
+                choice1 = Console.ReadLine();
+                realchoice = Int32.Parse(choice1);
+            } catch(FormatException) {
+                Console.WriteLine("Must be a number.");
+                choice1 = "";
+            }
+        } while(choice1 == "");
+        
+
+        Concert concert = concertList[realchoice-1];
+        Console.WriteLine($"Name: {concert.Name}\nDate: {concert.Date}\nPrice: {concert.ConcertPrice}");
+
+        string? cn; // concert name
+        do {
+            Console.WriteLine("Edit concert name:");
+            cn = Console.ReadLine(); 
+        } while(cn == null || cn == "");
+
+        string? cd; // concert date
+        do {
+            Console.WriteLine("Edit concert date (YYYY/MM/DD):");
+            cd = Console.ReadLine(); 
+        } while(cd == null || cd == "");
+
+        string? cp; // concert price
+        int realcp = 0;
+        do {
+            Console.WriteLine("Edit concert ticket price: ");
+            cp = Console.ReadLine();
+            try {
+                realcp = Int32.Parse(cp);
+            } catch(FormatException) {
+                Console.WriteLine("Must be a number.");
+                cp = null;
+            }
+        } while(cp == null);
+
+        Console.WriteLine($"Name: {concert.Name} -> {cn}\nDate: {concert.Date} -> {cd}\nPrice: {concert.ConcertPrice} -> {realcp}");
+        Console.WriteLine("Do you really want to commit these changes? (type 'yes' to continue, anything else to revert changes.)");
+        string? choice = Console.ReadLine().ToLower();
+        
+        if(choice == "yes") {
+            concert.Name = cn;
+            concert.Date = cd;
+            concert.ConcertPrice = realcp;
+        } else {
+            Console.WriteLine("Changes reverted.");
+        }
+
+        
+    }
+
+
+    public void RemoveConcert() {
+        for(int i = 0; i != concertList.Count; i++) {
+            Console.WriteLine($"{i + 1}. {concertList[i].Name}");
+        }
+
+        string? choice1;
+        int realchoice = 0;
+
+        do {
+            Console.WriteLine("Which concert would you like to remove? (pick a number)");
+            
+            try {
+                choice1 = Console.ReadLine();
+                realchoice = Int32.Parse(choice1);
+            } catch(FormatException) {
+                Console.WriteLine("Must be a number.");
+                choice1 = "";
+            }
+        } while(choice1 == "");
+        
+        Concert concert = concertList[realchoice-1];
+
+        Console.WriteLine("Do you really want to remove this concert? (type 'yes' to continue, anything else cancel)");
+        string? choice = Console.ReadLine().ToLower();
+        
+        if(choice == "yes") {
+            Console.WriteLine($"Concert {concert.Name} has been removed!");
+            concertList.Remove(concert);
         }
     }
 

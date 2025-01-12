@@ -16,10 +16,12 @@ class Ticket {
         Price = ticketPrice;
         SeatNumber = ticketSeat;
         TicketOwner = owner;
+
+        chosenConcert.SeatArray[ticketSeat] = 1;
     }
 
 
-    List<Ticket> ListOfTickets = new List<Ticket>{
+    public static List<Ticket> ListOfTickets = new List<Ticket>() {
         new Ticket(BookingSystem.concertList[0], 150, 3, User.UserList[2]),
         new Ticket(BookingSystem.concertList[0], 150, 10, User.UserList[3]),
         new Ticket(BookingSystem.concertList[1], 200, 5, User.UserList[4]),

@@ -8,25 +8,27 @@ namespace bookingSystemClass;
 
 
 class BookingSystem {
+
+    User currentUser = User.SignIn();
     
     public static List<Concert> concertList = new List<Concert>
             {
                 new Concert("Rocking the Night", "2025-02-15", "New York", 15, 150, new RegularConcert()),
-                new Concert("Jazz Under the Stars", "2025-03-10", "Los Angeles", 8, 200, new VIPConcert()),
-                new Concert("Online Symphony", "2025-01-25", "Virtual", 9999, 50, new OnLineConcert()),
-                new Concert("Pop Explosion", "2025-04-18", "Chicago", 12, 120, new RegularConcert()),
-                new Concert("Classical Delight", "2025-05-22", "Boston", 7, 180, new VIPConcert()),
-                new Concert("Indie Vibes", "2025-06-30", "New York", 16, 100, new RegularConcert()),
-                new Concert("Private Serenade", "2025-07-05", "Los Angeles", 5, 5000, new PrivateConcert(new List<User> { User.UserList[3], User.UserList[28], User.UserList[14], User.UserList[12], User.UserList[9] })),
-                new Concert("Metal Mayhem", "2025-08-12", "Chicago", 14, 140, new RegularConcert()),
-                new Concert("Piano Dreams", "2025-09-09", "New York", 5, 300, new VIPConcert()),
-                new Concert("Electronic Escape", "2025-10-11", "Miami", 10, 90, new RegularConcert()),
-                new Concert("Country Roads", "2025-11-20", "Los Angeles", 40, 110, new RegularConcert()),
-                new Concert("Soulful Evenings", "2025-12-15", "Chicago", 40, 130, new VIPConcert()),
-                new Concert("Hip-Hop Heat", "2025-01-10", "New York", 40, 100, new RegularConcert()),
-                new Concert("Opera Night", "2025-02-20", "Los Angeles", 40, 220, new VIPConcert()),
-                new Concert("Online EDM Party", "2025-03-05", "Virtual", 9999, 60, new OnLineConcert()),
-                new Concert("Blues Legends", "2025-04-02", "Chicago", 40, 150, new RegularConcert())
+                new Concert("Jazz Under the Stars", "2025-02-15", "Los Angeles", 8, 200, new VIPConcert()),
+                new Concert("Online Symphony", "2025-02-15", "Virtual", 9999, 50, new OnLineConcert()),
+                new Concert("Pop Explosion", "2025-02-16", "Chicago", 12, 120, new RegularConcert()),
+                new Concert("Classical Delight", "2025-02-16", "Boston", 7, 180, new VIPConcert()),
+                new Concert("Indie Vibes", "2025-02-17", "New York", 16, 100, new RegularConcert()),
+                new Concert("Private Serenade", "2025-02-17", "Los Angeles", 5, 5000, new PrivateConcert(new List<User> { User.UserList[3], User.UserList[28], User.UserList[14], User.UserList[12], User.UserList[9] })),
+                new Concert("Metal Mayhem", "2025-02-18", "Chicago", 14, 140, new RegularConcert()),
+                new Concert("Piano Dreams", "2025-02-19", "New York", 5, 300, new VIPConcert()),
+                new Concert("Electronic Escape", "2025-02-19", "Miami", 10, 90, new RegularConcert()),
+                new Concert("Country Roads", "2025-02-20", "Los Angeles", 40, 110, new RegularConcert()),
+                new Concert("Soulful Evenings", "2025-02-20", "Chicago", 40, 130, new VIPConcert()),
+                new Concert("Hip-Hop Heat", "2025-02-21", "New York", 40, 100, new RegularConcert()),
+                new Concert("Opera Night", "2025-02-21", "Los Angeles", 40, 220, new VIPConcert()),
+                new Concert("Online EDM Party", "2025-02-22", "Virtual", 9999, 60, new OnLineConcert()),
+                new Concert("Blues Legends", "2025-02-22", "Chicago", 40, 150, new RegularConcert())
             };
 
     public void AddConcert() {
@@ -240,22 +242,190 @@ class BookingSystem {
         }
     }
 
-    public void GenerateReport() {
-        //admin
-    }
-
     public void DisplayConcert() {
-        Console.WriteLine("Aviable concerts: ");
-        for(int i = 0; i != concertList.Count; i++) {
-            Console.WriteLine($"{i+1}. {concertList[i].Name}, Date: {concertList[i].Date}, In: {concertList[i].Location} || Cost: {concertList[i].ConcertPrice}");
+        Console.WriteLine("Select how do you want to display concerts\n1. Name\n2. Location\n 3. Date");
+        string? choice = "";
+        int intchoice = 0;
+        
+        do {
+            try {
+                choice = Console.ReadLine();
+                intchoice = Int32.Parse(choice);
+            } catch(FormatException) {
+                Console.WriteLine("Must be a number.");
+                choice = null;
+            }
+
+            switch(intchoice) {
+            case 1:
+                Console.WriteLine("Name: ");
+                string userConcertName = Console.ReadLine();
+                int j;
+                List<Concert> selectedConcertsName = new List<Concert>();
+
+                selectedConcertsName = concertList.Where(concertName => concertName.Name == userConcertName).ToList();
+
+                if (selectedConcertsName.Count == 0) {
+                    Console.WriteLine("No concerts found");
+                } else {
+                    j = 1;
+                    foreach (var concert in selectedConcertsName)
+                    {
+                        Console.WriteLine($"{j}. Name: {concert.Name}, Date: {concert.Date}, Location: {concert.Location}, Price: {concert.ConcertPrice}");
+                        j++;
+                    }
+                }
+                break;
+
+            case 2:
+                Console.WriteLine("Location: ");
+                string userConcertLocation = Console.ReadLine();
+                
+                List<Concert> selectedConcertsLocation = new List<Concert>();
+                selectedConcertsLocation = concertList.Where(concertName => concertName.Location == userConcertLocation).ToList();
+                if (selectedConcertsLocation.Count == 0) {
+                    Console.WriteLine("No concerts found");
+                } else {
+                    j = 1;
+                    foreach (var concert in selectedConcertsLocation)
+                    {
+                        Console.WriteLine($"{j}. Name: {concert.Name}, Date: {concert.Date}, Location: {concert.Location}, Price: {concert.ConcertPrice}");
+                        j++;
+                    } 
+                }
+                break;
+
+            case 3:
+                Console.WriteLine("Date (YYYY/MM/DD): ");
+                string userConcertDate = Console.ReadLine();
+
+                List<Concert> selectedConcertsDate = new List<Concert>();
+                selectedConcertsDate = concertList.Where(concertName => concertName.Date == userConcertDate).ToList();
+
+                if (selectedConcertsDate.Count == 0) {
+                    Console.WriteLine("No concerts found");
+                } else {
+                    j = 1;
+                    foreach (var concert in selectedConcertsDate)
+                    {
+                        Console.WriteLine($"{j}. Name: {concert.Name}, Date: {concert.Date}, Location: {concert.Location}, Price: {concert.ConcertPrice}");
+                        j++;
+                    }
+                }
+                
+
+                break;
+            
+            default:
+                Console.WriteLine("Something went wrong.");
+                choice = null;
+                break;
         }
+            
+        } while (choice == null || choice == "");
     }
 
-    public void ReserveTicket() {
-        
+    /*
+    public void ReserveTicket(Concert concert) {
+        Console.WriteLine($"Concert: {concert.Name}\nDate: {concert.Date}\nLocation: {concert.Location}\nPrice: {concert.ConcertPrice}");
+        Console.WriteLine("Do you really want to buy a ticket to this concert? (type 'yes' to continue, anything else to cancel)");
+
+        /*
+        string? choice = Console.ReadLine().ToLower();
+        Random rnd = new();
+        int[] seats = concert.SeatArray;
+        int seat;
+        bool loop = true;
+
+        if (choice == "yes") {
+            if (concert.ConcertType is PrivateConcert && !((PrivateConcert)concert.ConcertType).InvitedUsers.Contains(currentUser)) {
+                Console.WriteLine("This is a private concert. You need to be invited to buy a ticket.");
+            } else {
+                if (seats.Length == 0) {
+                    Console.WriteLine("No seats available.");
+                    return;
+                }
+
+                do {
+                    seat = rnd.Next(0, seats.Length); // Random seat index within valid range
+                    if (seat < 0 || seat >= seats.Length) {
+                        Console.WriteLine("Generated seat index is out of range.");
+                        continue;
+                    }
+
+                    if (seats[seat] == 1) {
+                        // Seat is occupied
+                        continue;
+                    } else {
+                        seats[seat] = 1; // Seat is free, so occupy it
+                        loop = false;
+                    }
+                } while (loop);
+
+                Ticket.ListOfTickets.Add(new Ticket(concert, concert.ConcertPrice, seat, currentUser));
+                Console.WriteLine("Ticket bought!");
+            }
+        } else {
+            Console.WriteLine("Ticket not bought.");
+        }
+           
     }
+    */ 
+    
 
     public void FilterConcert() {
+        Console.WriteLine("Select how do you want to sort concerts\n1. Price\n2. Name");
+        string? choice = "";
+        int intchoice = 0;
         
-    }
+        do {
+            try {
+            choice = Console.ReadLine();
+            intchoice = Int32.Parse(choice);
+            } catch(FormatException) {
+                Console.WriteLine("Must be a number");
+                choice = null;
+            }
+            int j;
+            switch(intchoice) {
+            case 1:
+                var selectedConcertsPrice = concertList.OrderBy(concert => concert.ConcertPrice);
+                j = 1;
+                foreach (var concert in selectedConcertsPrice)
+                {
+                    Console.WriteLine($"{j}. Name: {concert.Name}, Date: {concert.Date}, Location: {concert.Location}, Price: {concert.ConcertPrice}");
+                    j++;
+                }
+                break;
+
+            case 2:
+                var selectedConcertsName = concertList.OrderBy(concert => concert.Name);
+                j = 1;
+                foreach (var concert in selectedConcertsName)
+                {
+                    Console.WriteLine($"{j}. Name: {concert.Name}, Date: {concert.Date}, Location: {concert.Location}, Price: {concert.ConcertPrice}");
+                    j++;
+                }
+                break;
+
+            /*case 3:
+                var selectedConcertsSeatAmount = concertList.OrderBy(concert => concert.SeatArray);
+                j = 1;
+                foreach (var concert in selectedConcertsSeatAmount)
+                {
+                    Console.WriteLine($"{j}. Name: {concert.Name}, Date: {concert.Date}, Location: {concert.Location}, Price: {concert.ConcertPrice}");
+                    j++;
+                }
+                break;*/
+            
+            default:
+                Console.WriteLine("Something went wrong");
+                choice = null;
+                break;
+        }
+            
+        } while (choice == null || choice == "");
+    }   
 }
+    
+    

@@ -34,6 +34,8 @@ class Concert {
         SeatArray = new int[seatAmount];
         ConcertPrice = concertPrice;
         ConcertType = concertType;
+
+        
     }
 
 

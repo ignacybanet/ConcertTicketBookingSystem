@@ -10,9 +10,9 @@ class User {
     public string Password;
 
 
-    public User(string username, string role,  string password) {
+    public User(string username, string role, string password) {
         Username = username;
-        Role = "user";
+        Role = role;
         Password = password;
     }
 

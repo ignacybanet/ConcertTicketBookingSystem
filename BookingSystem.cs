@@ -10,7 +10,7 @@ namespace bookingSystemClass;
 class BookingSystem {
 
     User currentUser = User.SignIn();
-    
+
     public static List<Concert> concertList = new List<Concert>
             {
                 new Concert("Rocking the Night", "2025-02-15", "New York", 15, 150, new RegularConcert()),
@@ -144,7 +144,6 @@ class BookingSystem {
         }
     }
 
-
     public void EditConcert() {
         
         for(int i = 0; i != concertList.Count; i++) {
@@ -209,7 +208,6 @@ class BookingSystem {
 
         
     }
-
 
     public void RemoveConcert() {
         for(int i = 0; i != concertList.Count; i++) {
@@ -371,8 +369,6 @@ class BookingSystem {
            
     }
     */ 
-    
-
     public void FilterConcert() {
         Console.WriteLine("Select how do you want to sort concerts\n1. Price\n2. Name");
         string? choice = "";
@@ -426,6 +422,84 @@ class BookingSystem {
             
         } while (choice == null || choice == "");
     }   
+
+    public void UI() {
+
+        while(true) {
+            if (currentUser.Role == "admin") {
+                
+                Console.WriteLine("1. Add concert\n2. Edit concert\n3. Remove concert\n4. Exit");
+                string? choice = Console.ReadLine();
+                int realchoice = 0;
+                try {
+                    realchoice = Int32.Parse(choice);
+                } catch(FormatException) {
+                    Console.WriteLine("Must be a number.");
+                    continue;
+                }
+
+                switch(realchoice) {
+                    case 1:
+                        AddConcert();
+                        break;
+
+                    case 2:
+                        EditConcert();
+                        break;
+
+                    case 3:
+                        RemoveConcert();
+                        break;
+
+                    case 4:
+                        return;
+                    
+                    case 2145:
+                        Console.WriteLine("The time my suffering stopped. Fried egg jellyfish");
+                        break;
+
+                    default:
+                        Console.WriteLine("Number out of bounds.");
+                        break;
+                }
+            }
+
+
+            else if (currentUser.Role == "user" || currentUser.Role == "vip") {
+                
+                Console.WriteLine("1. Display concerts\n2. Filter concerts\n3. Exit");
+                string? choice = Console.ReadLine();
+                int realchoice = 0;
+                try {
+                    realchoice = Int32.Parse(choice);
+                } catch(FormatException) {
+                    Console.WriteLine("Must be a number.");
+                    continue;
+                }
+
+                switch(realchoice) {
+                    case 1:
+                        DisplayConcert();
+                        break;
+
+                    case 2:
+                        FilterConcert();
+                        break;
+
+                    case 3:
+                        return;
+
+                    case 62:
+                        Console.WriteLine("Oi hhhuuuggghhhiiieee");
+                        break;
+                        
+                    default:
+                        Console.WriteLine("Number out of bounds.");
+                        break;
+                }
+            }
+        }
+    }
 }
     
     

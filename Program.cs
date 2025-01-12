@@ -8,5 +8,6 @@ class Program {
     static void Main() {
         BookingSystem sstenm = new();
         
+        sstenm.UI();
     }
 }

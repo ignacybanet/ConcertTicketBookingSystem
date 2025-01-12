@@ -1,6 +1,7 @@
 using System;
 using ticketClass;
 using concertClass;
+using userClass;
 using System.Security.Cryptography.X509Certificates;
 
 namespace bookingSystemClass;
@@ -8,7 +9,25 @@ namespace bookingSystemClass;
 
 class BookingSystem {
     
-    public List<Concert> concertList = new List<Concert>();
+    public static List<Concert> concertList = new List<Concert>
+            {
+                new Concert("Rocking the Night", "2025-02-15", "New York", 15, 150, new RegularConcert()),
+                new Concert("Jazz Under the Stars", "2025-03-10", "Los Angeles", 8, 200, new VIPConcert()),
+                new Concert("Online Symphony", "2025-01-25", "Virtual", 9999, 50, new OnLineConcert()),
+                new Concert("Pop Explosion", "2025-04-18", "Chicago", 12, 120, new RegularConcert()),
+                new Concert("Classical Delight", "2025-05-22", "Boston", 7, 180, new VIPConcert()),
+                new Concert("Indie Vibes", "2025-06-30", "New York", 16, 100, new RegularConcert()),
+                new Concert("Private Serenade", "2025-07-05", "Los Angeles", 5, 5000, new PrivateConcert(new List<User> { User.UserList[3], User.UserList[28], User.UserList[14], User.UserList[12], User.UserList[9] })),
+                new Concert("Metal Mayhem", "2025-08-12", "Chicago", 14, 140, new RegularConcert()),
+                new Concert("Piano Dreams", "2025-09-09", "New York", 5, 300, new VIPConcert()),
+                new Concert("Electronic Escape", "2025-10-11", "Miami", 10, 90, new RegularConcert()),
+                new Concert("Country Roads", "2025-11-20", "Los Angeles", 40, 110, new RegularConcert()),
+                new Concert("Soulful Evenings", "2025-12-15", "Chicago", 40, 130, new VIPConcert()),
+                new Concert("Hip-Hop Heat", "2025-01-10", "New York", 40, 100, new RegularConcert()),
+                new Concert("Opera Night", "2025-02-20", "Los Angeles", 40, 220, new VIPConcert()),
+                new Concert("Online EDM Party", "2025-03-05", "Virtual", 9999, 60, new OnLineConcert()),
+                new Concert("Blues Legends", "2025-04-02", "Chicago", 40, 150, new RegularConcert())
+            };
 
     public void AddConcert() {
         string? cn; // concert name
@@ -84,7 +103,24 @@ class BookingSystem {
                     break;
 
                 case 4: 
-                    PrivateConcert cprivate = new();
+                    List<User> invitedpeople = new List<User>();
+                    for(int i = 0 ; i != realsa ; i++) {
+                        string? name;
+                        do {
+                            Console.WriteLine($"Input username of invited person nr {i+1}: ");
+                            name = Console.ReadLine();
+                            User invitedperson = User.UserList.Find(x => x.Username == name);
+                            if(invitedperson == null) {
+                                Console.WriteLine("User not found.");
+                                name = null;
+                            } else {
+                                invitedpeople.Add(invitedperson);
+                            }
+                            
+                        } while(name == null || name == "");
+                    }
+
+                    PrivateConcert cprivate = new(invitedpeople);
                     realct = cprivate;
                     break;
 
@@ -201,6 +237,17 @@ class BookingSystem {
         if(choice == "yes") {
             Console.WriteLine($"Concert {concert.Name} has been removed!");
             concertList.Remove(concert);
+        }
+    }
+
+    public void GenerateReport() {
+        //admin
+    }
+
+    public void DisplayConcert() {
+        Console.WriteLine("Aviable concerts: ");
+        for(int i = 0; i != concertList.Count; i++) {
+            Console.WriteLine($"{i+1}. {concertList[i].Name}, Date: {concertList[i].Date}, In: {concertList[i].Location} || Cost: {concertList[i].ConcertPrice}");
         }
     }
 

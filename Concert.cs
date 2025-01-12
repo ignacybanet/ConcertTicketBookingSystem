@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using userClass;
 
 namespace concertClass;
 
@@ -10,7 +11,12 @@ interface TypeOfConcert {
 class VIPConcert : TypeOfConcert {}
 class RegularConcert : TypeOfConcert {}
 class OnLineConcert : TypeOfConcert {}
-class PrivateConcert : TypeOfConcert {}
+class PrivateConcert : TypeOfConcert {
+    public List<User> InvitedUsers;
+    public PrivateConcert(List<User> invitedUsers) {
+        InvitedUsers = invitedUsers;
+    }
+}
 
 class Concert {
     public string Name;
@@ -29,5 +35,9 @@ class Concert {
         ConcertPrice = concertPrice;
         ConcertType = concertType;
     }
+
+
+
+
 
 }

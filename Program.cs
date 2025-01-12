@@ -7,6 +7,6 @@ using userClass;
 class Program {
     static void Main() {
         BookingSystem sstenm = new();
-        User.SignIn();
+        sstenm.DisplayConcert();
     }
 }
